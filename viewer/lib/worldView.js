@@ -27,20 +27,30 @@ class WorldView extends EventEmitter {
       // 'move': botPosition,
       entitySpawn: function (e) {
         if (e === bot.entity) return
+        setTimeout(() => {
         worldView.emitter.emit('entity', { id: e.id, name: e.name, pos: e.position, width: e.width, height: e.height, username: e.username })
+        }, 30000)
       },
       entityMoved: function (e) {
+        setTimeout(() => {
         worldView.emitter.emit('entity', { id: e.id, pos: e.position, pitch: e.pitch, yaw: e.yaw })
+        }, 30000)
       },
       entityGone: function (e) {
+        setTimeout(() => {
         worldView.emitter.emit('entity', { id: e.id, delete: true })
+        }, 30000)
       },
       chunkColumnLoad: function (pos) {
+        setTimeout(() => {
         worldView.loadChunk(pos)
+        }, 30000)
       },
       blockUpdate: function (oldBlock, newBlock) {
+        setTimeout(() => {
         const stateId = newBlock.stateId ? newBlock.stateId : ((newBlock.type << 4) | newBlock.metadata)
         worldView.emitter.emit('blockUpdate', { pos: oldBlock.position, stateId })
+        }, 30000)
       }
     }
 
